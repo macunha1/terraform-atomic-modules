@@ -21,12 +21,17 @@ variable "instance_size" {
 
 variable "subnets" {
   description = "AWS VPC Subnets to randomize over"
+  type        = "list"
 }
 
 variable "env" {
   description = "The environment it will serve (prod, staging, etc)"
-
   type = "string"
+}
+
+variable "key_pair_name" {
+  description = "The SSH key pair name to associate with these instances"
+  type        = "string"
 }
 
 variable "use_public_subnet" {

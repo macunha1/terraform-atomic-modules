@@ -2,10 +2,10 @@ resource "aws_instance" "default" {
   count         = "${var.instance_count}"
   ami           = "${element(data.aws_ami_ids.default.ids, 0)}"
   instance_type = "${var.instance_size}"
-  key_name      = "${var.env}-${var.project_name}"
+  key_name      = "${var.key_pair_name}"
   user_data     = "${var.instance_user_data}"
 
-  subnet_id = "${random_shuffle.default.result}"
+  subnet_id = "${element(random_shuffle.default.result, 0)}"
 
   iam_instance_profile = "${var.instance_profile}"
 
@@ -15,7 +15,8 @@ resource "aws_instance" "default" {
 }
 
 resource "aws_eip" "default" {
-  count = "${var.static_public_ip ? var.instance_count : 0}"
+  depends_on = ["aws_instance.default"]
+  count      = "${var.static_public_ip ? var.instance_count : 0}"
 
   instance = "${element(aws_instance.default.*.id, count.index)}"
   vpc      = true
