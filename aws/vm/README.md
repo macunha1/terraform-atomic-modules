@@ -11,9 +11,10 @@ This module will create:
 ### Usage example
 
  ```hcl
-module "prd-elasticsearch" {
-  source              = "git@github.com:macunha1/terraform-modules.git//aws/elasticsearch"
+module "aws_production_unknown_cluster" {
+  source              = "git@github.com:macunha1/terraform-modules.git//aws/vm"
   project_name        = "${module.aws_production_vpc.project_name}"
+  subnets             = "${module.aws_production_vpc.private_subnets}"
   instance_size       = "t3.medium"
   instance_of         = "unknown-cluster"
   instance_count      = 3
@@ -25,4 +26,4 @@ module "prd-elasticsearch" {
 
   env = "${module.aws_production_vpc.environment}"
 }
- ```
+```

@@ -14,7 +14,7 @@ This module will create:
 ### Usage example
 
  ```hcl
- module "aws_production_vpc" {
+module "aws_production_vpc" {
   source       = "git@github.com:macunha1/terraform-modules.git//aws/vpc"
   project_name = "example"
   region       = "us-east-1"

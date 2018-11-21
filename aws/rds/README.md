@@ -8,7 +8,7 @@ This module will create:
 
 ### Usage example
 
- ```hcl
+```hcl
 module "aws_production_unknownapp_rds" {
   source           = "git@github.com:macunha1/terraform-modules.git//aws/rds"
   env              = "${module.aws_production_vpc.environment}"

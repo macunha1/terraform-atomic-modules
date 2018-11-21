@@ -6,8 +6,8 @@ It will create a simple VPN Route to be used for a site-to-site VPN configuratio
 
 ### Usage example
 
- ```hcl
- module "aws_production_vpc" {
+```hcl
+module "aws_production_vpn_route" {
   source           = "git@github.com:macunha1/terraform-modules.git//aws/vpn-route"
   vpn_name         = "azure_brazil"
   vpn_subnet_range = "${module.azure_production_vnet.virtual_network_cidr_block}"
