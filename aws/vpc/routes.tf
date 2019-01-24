@@ -36,7 +36,7 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route_table_association" "private" {
-  count          = "${var.subnet["private"]}"
+  count          = "${var.create_nat_gateway ? var.subnet["private"] : 0}"
   subnet_id      = "${element(aws_subnet.private.*.id, count.index)}"
   route_table_id = "${aws_route_table.private.id}"
 }

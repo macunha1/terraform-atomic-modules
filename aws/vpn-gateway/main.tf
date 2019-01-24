@@ -26,4 +26,9 @@ resource "aws_vpn_connection" "main" {
   customer_gateway_id = "${aws_customer_gateway.main.id}"
   type                = "ipsec.1"
   static_routes_only  = "${!var.use_bgp}"
+
+  tags = "${merge(map("Name", format("%v-%v-vpn-conn", var.env, var.vpn_gateway_name),
+                      "environment", var.env),
+          var.custom_tags)}"
+
 }
