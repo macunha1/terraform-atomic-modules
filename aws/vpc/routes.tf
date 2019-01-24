@@ -20,6 +20,7 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_route_table" "private" {
+  count  = "${var.create_nat_gateway ? 1 : 0}"
   vpc_id = "${aws_vpc.default.id}"
 
   route {

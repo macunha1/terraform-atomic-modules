@@ -3,6 +3,11 @@ variable "cidr_block" {
   type        = "string"
 }
 
+variable "create_nat_gateway" {
+  description = "Whether or not to create the NAT Gateway for the private subnets"
+  default     = true
+}
+
 variable "env" {
   # Useful for cases where you need to isolate access to resources
   # so, you could securely run applications without interaction

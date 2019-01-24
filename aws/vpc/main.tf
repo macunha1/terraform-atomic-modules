@@ -62,11 +62,13 @@ resource "aws_internet_gateway" "default" {
 }
 
 resource "aws_eip" "nat_gateway" {
+  count      = "${var.create_nat_gateway ? 1 : 0}"
   vpc        = true
   depends_on = ["aws_internet_gateway.default"]
 }
 
 resource "aws_nat_gateway" "default" {
+  count         = "${var.create_nat_gateway ? 1 : 0}"
   allocation_id = "${aws_eip.nat_gateway.id}"
   subnet_id     = "${element(aws_subnet.public.*.id, 0)}"
   depends_on    = ["aws_internet_gateway.default", "aws_subnet.public"]
