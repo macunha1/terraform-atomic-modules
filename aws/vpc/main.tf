@@ -21,7 +21,9 @@ resource "aws_subnet" "private" {
     data.aws_availability_zones.available.names,
     (count.index % length(data.aws_availability_zones.available.names)))}"
 
-  cidr_block = "${cidrsubnet(aws_vpc.default.cidr_block, 8, count.index)}"
+  cidr_block = "${cidrsubnet(aws_vpc.default.cidr_block,
+                             var.subnet_cidr_bits,
+                             count.index)}"
 
   tags {
     Name = "${format("%v-%v-private-%02d-subnet",
@@ -40,9 +42,11 @@ resource "aws_subnet" "public" {
     data.aws_availability_zones.available.names,
     count.index % length(data.aws_availability_zones.available.names))}"
 
+  cidr_block = "${cidrsubnet(aws_vpc.default.cidr_block,
+                             var.subnet_cidr_bits,
+                             count.index + 127)}"
+
   map_public_ip_on_launch = true
-  cidr_block              = "${cidrsubnet(aws_vpc.default.cidr_block, 8,
-                             count.index + var.subnet["private"])}"
 
   tags {
     Name = "${format("%v-%v-public-%02d-subnet",
@@ -91,9 +95,9 @@ resource "aws_security_group" "allow_all_internal" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

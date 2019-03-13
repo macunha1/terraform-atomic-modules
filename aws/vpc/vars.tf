@@ -36,3 +36,8 @@ variable "subnet" {
     public  = 2
   }
 }
+
+variable "subnet_cidr_bits" {
+  description = "Number of bits to increment using the cidrsubnet method"
+  default     = 8
+}
