@@ -3,7 +3,7 @@ HCL templates to manage resources using [Terraform](https://www.terraform.io/)
 
 ⚠ Warning ⚠
 -------
-These modules are work in progress, they're still not finished. Have some points to improve.
+These modules are in beta, with some points to improve.
 
 If you find any bug or issue, let me know, and I'll work to solve it ASAP.
 
@@ -28,8 +28,17 @@ The available modules are:
 ├── aurora
 ├── iam-instance-role
 ├── rds
+├── route53-zone
 ├── s3-bucket
 ├── vm
 ├── vpc
+├── vpn-gateway
 └── vpn-route
+```
+
+### GCP
+
+```
+.
+└── vpc
 ```
