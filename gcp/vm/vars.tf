@@ -60,3 +60,8 @@ variable "data_volume_type" {
   type        = "string"
   default     = "pd-ssd"
 }
+
+variable "static_public_ip" {
+  description = "Whether or not to create (and attach) an external static IP"
+  default     = false
+}
