@@ -19,29 +19,30 @@ variable "instance_count" {
 }
 
 variable "instance_name" {
+    description = "The name to give to this instance"
     type = "string"
 }
 
 variable "instance_type" {
+    description = "GCP Compute Instance type"
     type = "string"
     default = "n1-standard-1"
 }
 
 variable "instance_image" {
+    description = "GCP Compute image to boot the instance"
     type = "string"
     default = "centos-7-v20190423"
 }
 
 variable "instance_project" {
+    description = "GCP project where compute image resides"
     type = "string"
     default = "centos-cloud"
 }
 
-variable "network" {
-    type = "string"
-}
-
 variable "subnetworks" {
+    description = "GCP VPC subnetwork list to be randomized when creating instances"
     type = "list"
 }
 
