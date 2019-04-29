@@ -16,7 +16,7 @@ resource "google_compute_instance" "no_external" {
     }
 
     network_interface {
-        network = "${var.network}"
+        network = "${data.google_compute_subnetwork.default.network}"
         subnetwork = "${element(random_shuffle.default.result, 0)}"
 
         //No external IP
@@ -37,7 +37,7 @@ resource "google_compute_instance" "external_ip" {
     }
 
     network_interface {
-        network = "${var.network}"
+        network = "${data.google_compute_subnetwork.default.network}"
         subnetwork = "${element(random_shuffle.default.result, 0)}"
 
         access_config {
