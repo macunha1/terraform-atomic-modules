@@ -9,3 +9,7 @@ data "google_compute_image" "default" {
     name = "${var.instance_image}"
     project = "${var.instance_project}"
 }
+
+data "google_compute_subnetwork" "default" {
+    self_link = "${element(var.subnetworks, 0)}"
+}
