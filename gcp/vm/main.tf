@@ -21,6 +21,11 @@ resource "google_compute_instance" "no_external" {
 
         //No external IP
     }
+
+    service_account {
+        email = "${element(concat(data.google_service_account.custom-sc.*.email, data.google_compute_default_service_account.defaut-sc.*.email), 0)}"
+        scopes = ["cloud-platform"]
+    }
 }
 
 resource "google_compute_instance" "external_ip" {
@@ -43,6 +48,11 @@ resource "google_compute_instance" "external_ip" {
         access_config {
             nat_ip = "${element(google_compute_address.default.*.address, count.index)}"
         }
+    }
+
+    service_account {
+        email = "${element(concat(data.google_service_account.custom-sc.*.email, data.google_compute_default_service_account.defaut-sc.*.email), 0)}"
+        scopes = ["cloud-platform"]
     }
 }
 
