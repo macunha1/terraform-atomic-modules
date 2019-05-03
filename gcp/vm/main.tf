@@ -23,7 +23,7 @@ resource "google_compute_instance" "no_external" {
     }
 
     service_account {
-        email = "${element(concat(data.google_service_account.custom-sc.*.email, data.google_compute_default_service_account.defaut-sc.*.email), 0)}"
+        email = "${element(concat(data.google_service_account.custom-service-account.*.email, data.google_compute_default_service_account.defaut-service-account.*.email), 0)}"
         scopes = ["cloud-platform"]
     }
 }
@@ -51,7 +51,7 @@ resource "google_compute_instance" "external_ip" {
     }
 
     service_account {
-        email = "${element(concat(data.google_service_account.custom-sc.*.email, data.google_compute_default_service_account.defaut-sc.*.email), 0)}"
+        email = "${element(concat(data.google_service_account.custom-service-account.*.email, data.google_compute_default_service_account.defaut-service-account.*.email), 0)}"
         scopes = ["cloud-platform"]
     }
 }
