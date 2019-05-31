@@ -66,3 +66,9 @@ variable "static_public_ip" {
   description = "Whether or not to create (and attach) an external static IP"
   default     = false
 }
+
+variable "service_account_id" {
+  description = "GCE Service Account ID to apply on all instances. Will fallback to default service account if empty"
+  type = "string"
+  default = ""
+}
