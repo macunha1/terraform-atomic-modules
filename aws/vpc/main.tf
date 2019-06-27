@@ -8,7 +8,7 @@ resource "aws_vpc" "default" {
     create_before_destroy = false
   }
 
-  tags {
+  tags = {
     Name = "${var.env}-${var.project_name}-vpc"
   }
 }
@@ -25,7 +25,7 @@ resource "aws_subnet" "private" {
                              var.subnet_cidr_bits,
                              count.index)}"
 
-  tags {
+  tags = {
     Name = "${format("%v-%v-private-%02d-subnet",
                      var.env,
                      var.project_name,
@@ -48,7 +48,7 @@ resource "aws_subnet" "public" {
 
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     Name = "${format("%v-%v-public-%02d-subnet",
                      var.env,
                      var.project_name,
@@ -60,7 +60,7 @@ resource "aws_internet_gateway" "default" {
   vpc_id     = "${aws_vpc.default.id}"
   depends_on = ["aws_vpc.default"]
 
-  tags {
+  tags = {
     Name = "${format("%v-%v-igw", var.env, var.project_name)}"
   }
 }
@@ -77,7 +77,7 @@ resource "aws_nat_gateway" "default" {
   subnet_id     = "${element(aws_subnet.public.*.id, 0)}"
   depends_on    = ["aws_internet_gateway.default", "aws_subnet.public"]
 
-  tags {
+  tags = {
     Name = "${format("%v-%v-nat-gw-%02d", var.env, var.project_name, 1)}"
   }
 }

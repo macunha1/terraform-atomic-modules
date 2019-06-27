@@ -1,5 +1,5 @@
 data "aws_vpc" "current" {
-  tags {
+  tags = {
     Name = "${var.env}-${var.project_name}-vpc"
   }
 }
@@ -7,7 +7,7 @@ data "aws_vpc" "current" {
 data "aws_subnet_ids" "private" {
   vpc_id = "${data.aws_vpc.current.id}"
 
-  tags {
+  tags = {
     Name = "${var.env}-${var.project_name}-private-*-subnet"
   }
 }

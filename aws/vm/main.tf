@@ -21,7 +21,7 @@ resource "aws_eip" "default" {
   instance = "${element(aws_instance.default.*.id, count.index)}"
   vpc      = true
 
-  tags {
+  tags = {
     Name        = "${var.env}-${var.instance_of}-eip"
   }
 }
@@ -33,7 +33,7 @@ resource "aws_ebs_volume" "data_disks" {
                                  count.index)}"
   type              = "${var.data_volume_type}"
 
-  tags {
+  tags = {
     Name = "${format("%v-%v-%02d-data", var.env, var.instance_of, count.index+1)}"
   }
 }

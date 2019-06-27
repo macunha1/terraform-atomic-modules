@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "current" {
   acl    = "${var.public_acl ? "public-read" : "private"}"
   region = "${var.region_specific ? var.region : ""}"
 
-  tags {
+  tags          =  {
     Name        = "Bucket for ${var.usage}"
     Environment = "${var.env}"
   }

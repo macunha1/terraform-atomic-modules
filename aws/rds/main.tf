@@ -13,7 +13,7 @@ resource "aws_db_subnet_group" "default" {
   name       = "${local.name}-subnets"
   subnet_ids = ["${data.aws_subnet_ids.private.ids}"]
 
-  tags {
+  tags = {
     Name = "${local.name}-subnets"
   }
 }
@@ -36,7 +36,7 @@ resource "aws_db_instance" "default" {
   multi_az       = "${var.use_multi_az}"
   identifier     = "${local.name}"
 
-  tags {
+  tags = {
     Name = "${local.name}"
   }
 }

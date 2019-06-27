@@ -8,7 +8,7 @@ resource "aws_route_table" "public" {
 
   depends_on = ["aws_internet_gateway.default"]
 
-  tags {
+  tags = {
     Name = "public-rtb-${var.region}"
   }
 }
@@ -30,7 +30,7 @@ resource "aws_route_table" "private" {
 
   depends_on = ["aws_internet_gateway.default"]
 
-  tags {
+  tags = {
     Name = "private-rtb-${var.region}"
   }
 }
