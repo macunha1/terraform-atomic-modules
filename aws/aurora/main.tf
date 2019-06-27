@@ -10,7 +10,7 @@ resource "aws_db_subnet_group" "default" {
   name       = "${local.name}-subnets"
   subnet_ids = ["${var.target_subnet_ids}"]
 
-  tags {
+  tags = {
     Name = "${local.name}-subnets"
   }
 }
@@ -40,7 +40,7 @@ resource "aws_rds_cluster_instance" "default" {
 
   engine = "aurora-${var.db_engine}"
 
-  tags {
+  tags = {
     Name = "${local.name}"
   }
 }
