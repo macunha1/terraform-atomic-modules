@@ -66,7 +66,7 @@ resource "google_compute_router_nat" "default" {
   router                             = "${google_compute_router.router.name}"
   region                             = "${var.region}"
   nat_ip_allocate_option             = "MANUAL_ONLY"
-  nat_ips                            = ["${google_compute_address.nat_address.self_link}"]
+  nat_ips                            = ["${element(google_compute_address.nat_address.*.self_link, 0)}"]
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
 
