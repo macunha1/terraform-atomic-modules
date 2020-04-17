@@ -1,30 +1,30 @@
-resource "aws_iam_role" "default" {
-  name = "${var.role_name}"
+data "aws_iam_policy_document" "ec2_assume_role" {
+  statement {
+    effect = "Allow"
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
     }
-  ]
+
+    actions = ["sts:AssumeRole"]
+  }
 }
-EOF
+
+resource "aws_iam_role" "default" {
+  name = var.role_name
+
+  assume_role_policy = data.aws_iam_policy_document.ec2_assume_role.json
 }
 
 resource "aws_iam_instance_profile" "default" {
-  name = "${var.role_name}"
-  role = "${aws_iam_role.default.name}"
+  name = var.role_name
+  role = aws_iam_role.default.name
 }
 
 resource "aws_iam_role_policy" "default" {
   name   = "${var.role_name}-policy"
-  role   = "${aws_iam_role.default.id}"
-  policy = "${var.role_policy_json}"
+  role   = aws_iam_role.default.id
+  policy = var.role_policy_json
 }
+

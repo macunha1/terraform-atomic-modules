@@ -31,8 +31,8 @@ variable "db_instance_type" {
   default     = "db.t2.micro"
 }
 
-variable "db_root_username" {
-  description = "Database root (a.k.a master) username"
+variable "db_username" {
+  description = "Database default username (for the root user)"
   type        = string
   default     = "root"
 }

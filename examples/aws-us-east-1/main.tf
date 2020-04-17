@@ -21,10 +21,10 @@ module "aws_production_vpn_route" {
 }
 
 module "aws_production_ssh_key_pair" {
-  source                = "git::https://github.com/cloudposse/terraform-aws-key-pair.git?ref=0.2.5"
-  namespace             = "production"
-  stage                 = "example"
-  name                  = "unknown"
+  source    = "git::https://github.com/cloudposse/terraform-aws-key-pair.git?ref=0.2.5"
+  namespace = "production"
+  stage     = "example"
+  name      = "unknown"
   # Make sure to ignore this path in .gitignore and to save the key in a safe place
   # For example, instead of storing a file, you can register it at Vault:
   # https://www.terraform.io/docs/providers/vault/r/generic_secret.html

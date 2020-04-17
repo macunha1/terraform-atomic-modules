@@ -1,3 +1,4 @@
 output "zone_id" {
-  value = "${aws_route53_zone.main.id}"
+  value = aws_route53_zone.main.id
 }
+

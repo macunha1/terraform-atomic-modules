@@ -1,11 +1,11 @@
 variable "project_name" {
   description = "The project name that this VPC will serve"
-  type        = "string"
+  type        = string
 }
 
 variable "instance_of" {
   description = "The name to give to this instance"
-  type        = "string"
+  type        = string
 }
 
 variable "instance_count" {
@@ -15,23 +15,23 @@ variable "instance_count" {
 
 variable "instance_size" {
   description = "AWS Ec2 Instance size"
-  type        = "string"
+  type        = string
   default     = "t2.micro"
 }
 
 variable "subnets" {
   description = "AWS VPC Subnets to randomize over"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "env" {
   description = "The environment it will serve (prod, staging, etc)"
-  type = "string"
+  type        = string
 }
 
 variable "key_pair_name" {
   description = "The SSH key pair name to associate with these instances"
-  type        = "string"
+  type        = string
 }
 
 variable "use_public_subnet" {
@@ -45,24 +45,24 @@ variable "static_public_ip" {
 
 variable "ami_info" {
   description = "Map of configurations for the AWS Ec2 AMI"
-  type        = "map"
+  type        = map(string)
 }
 
 variable "instance_user_data" {
   description = "Instance UserData (commands to be executed in the Ec2 startup)"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "instance_profile" {
   description = "Instance AWS IAM profile (if it should use some role)"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "custom_tags" {
   description = "Custom tags to append to this instance"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
@@ -78,7 +78,7 @@ variable "data_volume_size" {
 
 variable "data_volume_type" {
   description = "If creating an additional disk, specify the type for it"
-  type        = "string"
+  type        = string
   default     = "standard"
 }
 
@@ -92,4 +92,3 @@ variable "create_fqdn" {
   description = "Whether or not to create a FQDN entry for this instance"
 }
 */
-

@@ -1,11 +1,11 @@
 variable "env" {
   description = "The environment (production, staging, etc) that this database will serve"
-  type        = "string"
+  type        = string
 }
 
 variable "project_name" {
   description = "The project name that this database will serve"
-  type        = "string"
+  type        = string
 }
 
 variable "target_subnet_ids" {
@@ -25,29 +25,30 @@ variable "storage_size" {
 
 variable "instance_of" {
   description = "The name to give to this instance"
-  type        = "string"
+  type        = string
 }
 
 variable "db_engine" {
   description = "The database engine to run inside RDS (mysql, postgresql, etc)"
-  type        = "string"
+  type        = string
   default     = "postgresql"
 }
 
 variable "db_name" {
   description = "Default database name inside the database server"
-  type        = "string"
+  type        = string
   default     = "default"
 }
 
 variable "db_instance_type" {
   description = "Default database instance type"
-  type        = "string"
+  type        = string
   default     = "db.t2.micro"
 }
 
 variable "db_username" {
   description = "Database default username (for the root user)"
-  type        = "string"
+  type        = string
   default     = "root"
 }
+
