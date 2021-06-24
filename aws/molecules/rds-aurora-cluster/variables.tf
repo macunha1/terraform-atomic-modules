@@ -33,6 +33,32 @@ variable "database_secret_name" {
   default     = "aurora-serverless-secrets"
 }
 
+variable "create_database_secret" {
+  description = <<EOF
+Whether or not to create the AWS Secrets Manager Secret containing the database
+password. Note that var.create_random_database_password depends on this one to
+store the generated password.
+
+If set to false, the module will try to read an existing secret using the
+var.database_secret_name value.
+EOF
+
+  type    = bool
+  default = true
+}
+
+variable "create_random_database_password" {
+  description = "Whether or not to generate a password for the database secret"
+  type        = bool
+  default     = true
+}
+
+variable "random_database_password_length" {
+  description = "Length (i.e. size in characters) of the generated password"
+  type        = number
+  default     = 24
+}
+
 variable "subnets" {
   description = "List of subnets to include database as availability zones"
   type        = list(string)

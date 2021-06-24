@@ -10,21 +10,21 @@ least one usage example.
 ### AWS (Amazon Web Services)
 
 ```
+aws
 ├── atoms
-│   └─── aws
-│        └── vpn_route
+│   ├── secretsmanager-secret
+│   └── vpn-route
 └── molecules
-    └── aws
-        └── rds_aurora_cluster
+    └── rds-aurora-cluster
 ```
 
 ### GCP (Google Cloud Platform)
 
 ```
+gcp
 └── molecules
-    └── gcp
-        ├── vm
-        └── vpc
+    ├── vm
+    └── vpc
 ```
 
 ## Contributing
