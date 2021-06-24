@@ -24,7 +24,7 @@ resource "random_password" "database" {
 }
 
 module "aurora_database_password" {
-  source = "../../atoms/secretsmanager-secret/"
+  source = "git:https://github.com/macunha1/terraform-atomic-modules//aws/atoms/secretsmanager-secret?ref=45848d7"
 
   name        = var.database_secret_name
   description = "AWS RDS cluster ${var.instance_name} default (root) password"
